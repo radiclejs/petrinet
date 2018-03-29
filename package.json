@@ -1,0 +1,18 @@
+{
+  "name": "petrinet",
+  "version": "0.1.0",
+  "description": "implements petrinet by typescript",
+  "main": "app.js",
+  "author": "yuzhe",
+  "license": "MIT",
+  "bin": {
+    "mocha": "node_modules/mocha/bin/mocha"
+  },
+  "scripts": {
+    "tsc": "tsc -p tsconfig.json",
+    "tsc:w": "tsc -p tsconfig.json -w"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+
+}
