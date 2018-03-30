@@ -1,32 +1,35 @@
-import Place from '../model/Place'
-import Transition from '../model/Transition'
-import { Factory } from '../model/Factory'
-import Node from '../model/Node.interface'
+import {PlaceInterface} from '../model/Place.interface'
+import {Place} from '../model/Place'
+import {TransitionInterface} from '../model/Transition.interface'
+import {Transition} from '../model/Transition'
+import { FactoryInterface } from '../model/Factory.interface'
+import {NodeInterface} from '../model/Node.interface'
+import {PetrinetInterface} from '../model/Petrinet.interface'
 
 export class PetrinetBuilder {
-  private places: Place[] = []
+  private places: PlaceInterface[] = []
 
-  private transitions: Transition[] = []
+  private transitions: TransitionInterface[] = []
 
-  private factory: Factory
+  private factory: FactoryInterface
 
-  constructor(factory: Factory) {
+  constructor(factory: FactoryInterface) {
     this.factory = factory
   }
 
-  place() {
+  place(): PlaceInterface {
     let place = this.factory.createPlace()
     this.places.push(place)
     return place
   }
 
-  transition() {
+  transition(): TransitionInterface {
     let transition = this.factory.createTransition()
     this.transitions.push(transition)
     return transition
   }
 
-  connect(source: Node, target: Node, weight: number) {
+  connect(source: NodeInterface, target: NodeInterface, weight: number): this {
     let arc
     if (source instanceof Place && target instanceof Transition) {
       arc = this.factory.createInputArc()
@@ -47,7 +50,7 @@ export class PetrinetBuilder {
     return this
   }
 
-  getPetrinet() {
+  getPetrinet(): PetrinetInterface {
     let petrinet = this.factory.createPetrinet()
     petrinet.setPlaces(this.places)
     petrinet.setTransitions(this.transitions)

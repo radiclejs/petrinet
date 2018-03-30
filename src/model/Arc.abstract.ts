@@ -1,9 +1,10 @@
 import { ArcInterface } from './Arc.interface'
 import { PlaceInterface } from './Place.interface'
 import { TransitionInterface } from './Transition.interface'
+import * as uuid from 'uuid'
 
 export abstract class AbstractArc implements ArcInterface {
-  protected id: number
+  protected id: string
 
   protected place: PlaceInterface
 
@@ -11,7 +12,11 @@ export abstract class AbstractArc implements ArcInterface {
 
   protected weight: number
 
-  getId(): number {
+  constructor() {
+    this.id = 'arc_' + uuid()
+  }
+
+  getId(): string {
     return this.id
   }
 

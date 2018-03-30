@@ -1,3 +1,3 @@
 export interface TokenInterface {
-  getId(): number
+  getId(): string
 }

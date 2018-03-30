@@ -3,7 +3,7 @@ import {OutputArcInterface} from './OutputArc.interface'
 
 export interface NodeInterface {
 
-  getId(): number
+  getId(): string
 
   getInputArcs(): InputArcInterface[]
 

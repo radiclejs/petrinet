@@ -2,13 +2,13 @@ import {InputArcInterface} from './InputArc.interface'
 import {OutputArcInterface} from './OutputArc.interface'
 
 export abstract class NodeAbstract {
-  protected id: number
+  protected id: string
 
-  protected inputArcs: InputArcInterface[]
+  protected inputArcs: InputArcInterface[] = []
 
-  protected outputArcs: OutputArcInterface[]
+  protected outputArcs: OutputArcInterface[] = []
 
-  getId(): number {
+  getId(): string {
     return this.id
   }
 

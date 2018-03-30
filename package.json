@@ -9,10 +9,17 @@
     "mocha": "node_modules/mocha/bin/mocha"
   },
   "scripts": {
+    "demo": "nodemon ./demo",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
   },
-  "devDependencies": {},
-  "dependencies": {}
-
+  "devDependencies": {
+    "nodemon": "^1.17.2",
+    "tslib": "^1.9.0",
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "jsonfile": "^4.0.0",
+    "uuid": "^3.2.1"
+  }
 }

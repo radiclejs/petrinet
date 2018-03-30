@@ -1,10 +1,11 @@
 import {PetrinetInterface} from './Petrinet.interface'
 import {PlaceInterface} from './Place.interface'
 import {TransitionInterface} from './Transition.interface'
+import * as uuid from 'uuid'
 
 export class Petrinet implements PetrinetInterface {
 
-  protected id: number
+  protected id: string
 
   protected places: PlaceInterface[]
 
@@ -13,9 +14,10 @@ export class Petrinet implements PetrinetInterface {
   constructor() {
     this.places = []
     this.transitions = []
+    this.id = 'petrinet_' + uuid()
   }
 
-  getId(): number {
+  getId(): string {
     return this.id
   }
 
@@ -61,9 +63,5 @@ export class Petrinet implements PetrinetInterface {
 
   getTransitions(): TransitionInterface[] {
     return this.transitions
-  }
-
-  toJSON() {
-
   }
 }

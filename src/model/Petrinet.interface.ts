@@ -2,7 +2,7 @@ import {TransitionInterface} from './Transition.interface'
 import {PlaceInterface} from './Place.interface'
 
 export interface PetrinetInterface {
-  getId(): number
+  getId(): string
 
   getTransitions(): TransitionInterface[]
 

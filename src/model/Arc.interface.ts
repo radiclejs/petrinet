@@ -3,7 +3,7 @@ import {TransitionInterface} from './Transition.interface'
 
 export interface ArcInterface {
 
-  getId(): number
+  getId(): string
 
   setPlace(place: PlaceInterface)
 

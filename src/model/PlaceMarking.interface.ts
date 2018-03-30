@@ -2,7 +2,7 @@ import {PlaceInterface} from './Place.interface'
 import {TokenInterface} from './Token.interface'
 
 export interface PlaceMarkingInterface {
-  getId(): number
+  getId(): string
 
   getPlace(): PlaceInterface
 

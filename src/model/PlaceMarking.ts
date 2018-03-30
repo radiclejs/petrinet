@@ -1,13 +1,15 @@
 import {PlaceMarkingInterface} from './PlaceMarking.interface'
 import {PlaceInterface} from './Place.interface'
 import {TokenInterface} from './Token.interface'
+import * as uuid from 'uuid'
 
 export class PlaceMarking implements PlaceMarkingInterface {
   constructor() {
     this.tokens = []
+    this.id = 'placeMarking_' + uuid()
   }
 
-  protected id: number
+  protected id: string
 
   protected place: PlaceInterface
 

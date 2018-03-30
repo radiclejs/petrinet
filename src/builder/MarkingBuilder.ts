@@ -1,19 +1,20 @@
-import {PlaceMarking} from '../model/PlaceMarking'
-import { Factory } from '../model/Factory'
-import {Place} from '../model/Place'
+import {PlaceMarkingInterface} from '../model/PlaceMarking.interface'
+import { FactoryInterface } from '../model/Factory.interface'
+import {PlaceInterface} from '../model/Place.interface'
+import {TokenInterface} from '../model/Token.interface'
 import {Token} from '../model/Token'
-import {Marking} from '../model/Marking';
+import {MarkingInterface} from '../model/Marking.interface';
 
 export class MarkingBuilder {
-  private placeMarkings: PlaceMarking[]
+  private placeMarkings: PlaceMarkingInterface[]
 
-  private factory: Factory
+  private factory: FactoryInterface
 
-  constructor(factory: Factory) {
+  constructor(factory: FactoryInterface) {
     this.factory = factory
   }
 
-  mark($place: Place, $tokens: Token[] | number | Token) {
+  mark($place: PlaceInterface, $tokens: TokenInterface[] | number | TokenInterface) {
     let tokens = []
     if (Number.isInteger(Number($tokens))) {
       const tokensCount = $tokens
@@ -38,7 +39,7 @@ export class MarkingBuilder {
     return this
   }
 
-  getMarking(): Marking {
+  getMarking(): MarkingInterface {
     let marking = this.factory.createMarking()
     marking.setPlaceMarkings(this.placeMarkings)
 

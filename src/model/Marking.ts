@@ -1,17 +1,19 @@
 import {MarkingInterface} from './Marking.interface'
 import {PlaceMarkingInterface} from './PlaceMarking.interface'
 import {PlaceInterface} from './Place.interface'
+import * as uuid from 'uuid'
 
 export class Marking implements MarkingInterface {
   constructor() {
     this.placeMarkings = []
+    this.id = 'marking_' + uuid()
   }
 
-  id: number
+  id: string
 
   placeMarkings: PlaceMarkingInterface[]
 
-  getId(): number {
+  getId(): string {
     return this.id
   }
 

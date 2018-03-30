@@ -1,44 +1,52 @@
 import {FactoryInterface} from './Factory.interface'
 import {Petrinet} from './Petrinet'
+import { PetrinetInterface} from './Petrinet.interface'
 import {Place} from './Place'
+import {PlaceInterface} from './Place.interface'
 import {Transition} from './Transition'
+import {TransitionInterface} from './Transition.interface'
 import {InputArc} from './InputArc'
+import { InputArcInterface } from './InputArc.interface'
 import {OutputArc} from './OutputArc'
+import {OutputArcInterface} from './OutputArc.interface'
 import {PlaceMarking} from './PlaceMarking'
+import {PlaceMarkingInterface} from './PlaceMarking.interface'
 import {Token} from './Token'
+import {TokenInterface} from './Token.interface'
 import {Marking} from './Marking'
+import {MarkingInterface} from './Marking.interface'
 
 export class Factory implements FactoryInterface {
 
-  createPetrinet(): Petrinet {
+  createPetrinet(): PetrinetInterface {
     return new Petrinet()
   }
 
-  createPlace(): Place {
+  createPlace(): PlaceInterface {
     return new Place()
   }
 
-  createTransition(): Transition {
+  createTransition(): TransitionInterface {
     return new Transition()
   }
 
-  createInputArc(): InputArc {
+  createInputArc(): InputArcInterface {
     return new InputArc()
   }
 
-  createOutputArc(): OutputArc {
+  createOutputArc(): OutputArcInterface {
     return new OutputArc()
   }
 
-  createPlaceMarking(): PlaceMarking {
+  createPlaceMarking(): PlaceMarkingInterface {
     return new PlaceMarking()
   }
 
-  createToken(): Token {
+  createToken(): TokenInterface {
     return new Token()
   }
 
-  createMarking(): Marking {
+  createMarking(): MarkingInterface {
     return new Marking()
   }
 }

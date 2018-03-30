@@ -1,8 +1,9 @@
-import { Factory } from '../model/Factory'
-import { PetrinetBuilder } from '../builder/PetrinetBuilder'
-import {Petrinet} from '../model'
+import { Factory } from '../src/model/Factory'
+import { PetrinetBuilder } from '../src/builder/PetrinetBuilder'
+import { JsonDumper } from '../src/dumper/JsonDumper'
+import {PetrinetInterface} from '../src/model/Petrinet.interface'
 
-function createPetrinet(): Petrinet {
+function createPetrinet(): PetrinetInterface {
   let $factory = new Factory()
   let $builder = new PetrinetBuilder($factory)
 
@@ -24,15 +25,21 @@ function createPetrinet(): Petrinet {
   return $builder.getPetrinet()
 }
 
-function createPetrinetInstance(petrinet: Petrinet) {
-
-}
+// function createPetrinetInstance(petrinet: PetrinetInterface) {
+//   console.log(petrinet)
+// }
 
 
 // 创建流程结构
 const PetrinetStructure = createPetrinet()
 
 // 创建流程实例
-const petrinetInstance = createPetrinetInstance(PetrinetStructure)
+// const petrinetInstance = createPetrinetInstance(PetrinetStructure)
 
 // 运行流程实例
+
+
+const dumper = new JsonDumper()
+
+// 生成json数据文件
+dumper.dump(PetrinetStructure)

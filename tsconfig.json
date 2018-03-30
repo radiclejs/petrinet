@@ -21,13 +21,9 @@
     "importHelpers": true
   },
   "include": [
-    "enginee/**/*",
-    "app/**/*",
-    "config/**/*",
-    "test/**/*.ts"
+    "src/**/*",
+    "demo/**/*"
   ],
   "exclude": [
-    "app/public",
-    "app/views"
   ]
 }
