@@ -1,17 +1,15 @@
 import {TransitionServiceInterface} from './TransitionService.interface'
-import { Factory } from '../model/Factory'
-import {Transition} from '../model/Transition'
-import {Marking} from '../model/Marking'
-import { TransitionNotEnabledException } from '../exceptions'
+import { FactoryInterface, TransitionInterface, MarkingInterface } from '../model'
+import { TransitionNotEnabledException, PlaceMarkingNotFoundException } from '../exceptions'
 
 export class TransitionService implements TransitionServiceInterface {
-  private factory: Factory
+  private factory: FactoryInterface
 
-  constructor($factory: Factory) {
+  constructor($factory: FactoryInterface) {
     this.factory = $factory
   }
 
-  isEnabled($transition: Transition, $marking: Marking): boolean {
+  isEnabled($transition: TransitionInterface, $marking: MarkingInterface): boolean {
     let $inputArcs = $transition.getInputArcs()
 
     if (!$inputArcs.length) {
@@ -29,10 +27,12 @@ export class TransitionService implements TransitionServiceInterface {
       if (placeMarking.getTokens().length < inputArc.getWeight()) {
         return false
       }
+
+      return true
     })
   }
 
-  fire(transition: Transition, marking: Marking) {
+  fire(transition: TransitionInterface, marking: MarkingInterface) {
     if (!this.isEnabled(transition, marking)) {
       throw new TransitionNotEnabledException()
     }
@@ -45,6 +45,11 @@ export class TransitionService implements TransitionServiceInterface {
       const weight = inputArc.getWeight()
       const place = inputArc.getPlace()
       let placeMarking = marking.getPlaceMarking(place)
+
+      if (!placeMarking) {
+        throw new PlaceMarkingNotFoundException()
+      }
+
       let tokens = placeMarking.getTokens()
 
       for (let i = 0; i < weight; i++) {

@@ -1,1 +1,2 @@
-export { TransitionNotEnabledException } from './TransitionNotEnabled.exception'
+export * from './TransitionNotEnabled.exception'
+export * from './PlaceMarkingNotFound.exception'

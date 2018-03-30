@@ -1,6 +1,6 @@
 export class TransitionNotEnabledException extends Error {
-  constructor(...args) {
-    super(...args)
+  constructor() {
+    super()
     this.message = 'transition not enabled'
   }
 }

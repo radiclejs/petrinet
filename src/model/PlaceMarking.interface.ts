@@ -6,11 +6,11 @@ export interface PlaceMarkingInterface {
 
   getPlace(): PlaceInterface
 
-  setPlace(place: PlaceInterface)
+  setPlace(place: PlaceInterface): void
 
-  removeToken(token: TokenInterface)
+  removeToken(token: TokenInterface): void
 
   getTokens(): TokenInterface[]
 
-  setTokens(tokens: TokenInterface[])
+  setTokens(tokens: TokenInterface[]): void
 }

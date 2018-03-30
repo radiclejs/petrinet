@@ -3,7 +3,7 @@ import {OutputArcInterface} from './OutputArc.interface'
 import {NodeInterface} from './Node.interface'
 
 export interface PlaceInterface extends NodeInterface {
-  addInputArc(arc: OutputArcInterface)
+  addInputArc(arc: OutputArcInterface): void
 
-  addOutputArc(arc: InputArcInterface)
+  addOutputArc(arc: InputArcInterface): void
 }

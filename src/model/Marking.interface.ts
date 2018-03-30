@@ -4,9 +4,9 @@ import {PlaceMarkingInterface} from './PlaceMarking.interface'
 export interface MarkingInterface {
   getId(): string
 
-  getPlaceMarking(place: PlaceInterface)
+  getPlaceMarking(place: PlaceInterface): PlaceMarkingInterface | null
 
-  addPlaceMarking(placeMarking: PlaceMarkingInterface)
+  addPlaceMarking(placeMarking: PlaceMarkingInterface): void
 
-  setPlaceMarkings(placeMarkings: PlaceMarkingInterface[])
+  setPlaceMarkings(placeMarkings: PlaceMarkingInterface[]): void
 }

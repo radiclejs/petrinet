@@ -14,7 +14,7 @@ export class MarkingBuilder {
     this.factory = factory
   }
 
-  mark($place: PlaceInterface, $tokens: TokenInterface[] | number | TokenInterface) {
+  mark($place: PlaceInterface, $tokens: TokenInterface[] | number | TokenInterface): this {
     let tokens = []
     if (Number.isInteger(Number($tokens))) {
       const tokensCount = $tokens

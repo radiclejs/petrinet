@@ -6,9 +6,9 @@ export interface PetrinetInterface {
 
   getTransitions(): TransitionInterface[]
 
-  setTransitions(transitions: TransitionInterface[])
+  setTransitions(transitions: TransitionInterface[]): void
 
   getPlaces(): PlaceInterface[]
 
-  setPlaces(places: PlaceInterface[])
+  setPlaces(places: PlaceInterface[]): void
 }

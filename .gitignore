@@ -77,3 +77,5 @@ server/run
 
 /src/**/*.js
 /demo/**/*.js
+/src/**/*.map
+/demo/**/*.map

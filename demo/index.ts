@@ -2,6 +2,7 @@ import { Factory } from '../src/model/Factory'
 import { PetrinetBuilder } from '../src/builder/PetrinetBuilder'
 import { JsonDumper } from '../src/dumper/JsonDumper'
 import {PetrinetInterface} from '../src/model/Petrinet.interface'
+import { MarkingBuilder } from '../src/builder/MarkingBuilder'
 
 function createPetrinet(): PetrinetInterface {
   let $factory = new Factory()
@@ -25,21 +26,35 @@ function createPetrinet(): PetrinetInterface {
   return $builder.getPetrinet()
 }
 
-// function createPetrinetInstance(petrinet: PetrinetInterface) {
-//   console.log(petrinet)
-// }
+function createMarking(petrinet: PetrinetInterface) {
+  let $factory = new Factory()
+  let $markingBuilder = new MarkingBuilder($factory)
+
+  let p1 = petrinet.getPlaces()[0]
+  let p2 = petrinet.getPlaces()[1]
+
+  $markingBuilder.mark(p1, 3)
+  $markingBuilder.mark(p2, 2)
+
+  return $markingBuilder.getMarking()
+}
 
 
 // 创建流程结构
-const PetrinetStructure = createPetrinet()
-
-// 创建流程实例
-// const petrinetInstance = createPetrinetInstance(PetrinetStructure)
-
-// 运行流程实例
-
-
-const dumper = new JsonDumper()
+var petrinet = createPetrinet()
 
 // 生成json数据文件
-dumper.dump(PetrinetStructure)
+var dumper = new JsonDumper()
+dumper.dump(petrinet, null)
+
+// 创建流程实例
+var marking = createMarking(petrinet)
+
+// 运行流程实例
+Object.assign(window, {
+  petrinet,
+  marking,
+})
+
+
+

@@ -1,5 +1,5 @@
-import {Petrinet, Marking} from '../model'
+import {PetrinetInterface, MarkingInterface} from '../model'
 
 export interface DumperInterface {
-  dump(petrinet: Petrinet, marking: Marking)
+  dump(petrinet: PetrinetInterface, marking: MarkingInterface | null): void
 }

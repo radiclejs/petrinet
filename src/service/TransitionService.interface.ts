@@ -4,5 +4,5 @@ import {MarkingInterface} from '../model/Marking.interface'
 export interface TransitionServiceInterface {
   isEnabled(transition: TransitionInterface, marking: MarkingInterface): boolean
 
-  fire(transition: TransitionInterface, marking: MarkingInterface)
+  fire(transition: TransitionInterface, marking: MarkingInterface): void
 }
