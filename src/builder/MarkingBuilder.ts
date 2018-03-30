@@ -6,7 +6,7 @@ import {Token} from '../model/Token'
 import {MarkingInterface} from '../model/Marking.interface';
 
 export class MarkingBuilder {
-  private placeMarkings: PlaceMarkingInterface[]
+  private placeMarkings: PlaceMarkingInterface[] = []
 
   private factory: FactoryInterface
 

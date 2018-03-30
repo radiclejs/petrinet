@@ -1,5 +1,5 @@
 import {PetrinetInterface, MarkingInterface} from '../model'
 
 export interface DumperInterface {
-  dump(petrinet: PetrinetInterface, marking: MarkingInterface | null): void
+  dump(petrinet: PetrinetInterface, marking: MarkingInterface | null): Promise<any>
 }

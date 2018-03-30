@@ -70,9 +70,9 @@ export class JsonDumper implements DumperInterface {
     return JSON.stringify(data)
   }
 
-  dump(petrinet: PetrinetInterface, marking: MarkingInterface | null): void {
+  async dump(petrinet: PetrinetInterface, marking: MarkingInterface | null): Promise<any> {
     console.log(marking)
     const jsonString = this.toJSON(petrinet)
-    jsonfile.writeFileSync('./petrinet.json', JSON.parse(jsonString), {spaces: 2})
+    await jsonfile.writeFileSync('./build/petrinet.json', JSON.parse(jsonString), {spaces: 2})
   }
 }
