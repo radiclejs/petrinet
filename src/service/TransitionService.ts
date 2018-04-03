@@ -21,10 +21,12 @@ export class TransitionService implements TransitionServiceInterface {
       let placeMarking = $marking.getPlaceMarking(place)
 
       if (!placeMarking) {
+        console.log('isEnabled: placeMarking empty cause disabled')
         return false
       }
 
       if (placeMarking.getTokens().length < inputArc.getWeight()) {
+        console.log('isEnabled: tokens length < inputArc weight cause disabled')
         return false
       }
 

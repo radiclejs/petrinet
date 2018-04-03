@@ -1,11 +1,12 @@
-import { Factory } from '../src/model/Factory'
+import { Factory, PetrinetInterface, PlaceInterface } from '../src/model'
 import { PetrinetBuilder } from '../src/builder/PetrinetBuilder'
 import { JsonDumper } from '../src/dumper/JsonDumper'
-import {PetrinetInterface} from '../src/model/Petrinet.interface'
 import { MarkingBuilder } from '../src/builder/MarkingBuilder'
+import { TransitionService } from '../src/service/TransitionService'
+
+const $factory = new Factory()
 
 function createPetrinet(): PetrinetInterface {
-  let $factory = new Factory()
   let $builder = new PetrinetBuilder($factory)
 
   let p1 = $builder.place()
@@ -26,35 +27,76 @@ function createPetrinet(): PetrinetInterface {
   return $builder.getPetrinet()
 }
 
-function createMarking(petrinet: PetrinetInterface) {
-  let $factory = new Factory()
-  let $markingBuilder = new MarkingBuilder($factory)
-
-  let p1 = petrinet.getPlaces()[0]
-  let p2 = petrinet.getPlaces()[1]
-
-  $markingBuilder.mark(p1, 3)
-  $markingBuilder.mark(p2, 2)
-
-  return $markingBuilder.getMarking()
-}
-
-
 // 创建流程结构
-var petrinet = createPetrinet()
+const petrinet = createPetrinet()
+
+// transition 集合
+const $ts = petrinet.getTransitions()
+// place 集合
+const $ps = petrinet.getPlaces()
 
 // 生成json数据文件
-var dumper = new JsonDumper()
-dumper.dump(petrinet, null)
+function dumpJSON() {
+  let dumper = new JsonDumper()
+  dumper.dump(petrinet, null)
+}
 
-// 创建流程实例
-var marking = createMarking(petrinet)
+dumpJSON()
 
-// 运行流程实例
-Object.assign(window, {
-  petrinet,
-  marking,
-})
+interface MarkParam {
+  place: PlaceInterface,
+  count: number
+}
+
+function createMarking(markParams: MarkParam | MarkParam[]) {
+  let markingBuilder = new MarkingBuilder($factory)
+  let arr = []
+  if (!Array.isArray(markParams)) {
+    arr = [markParams]
+  } else {
+    arr = markParams
+  }
+
+  arr.forEach(markParam => {
+    markingBuilder.mark(markParam.place, markParam.count)
+  })
+
+  return markingBuilder.getMarking()
+}
+
+function fire(transition, marking) {
+  const $transitionService = new TransitionService($factory)
+
+  // const isEnabled = $transitionService.isEnabled(transition, marking)
+
+  // console.log('is transition allowed? ', isEnabled)
+
+  try {
+      $transitionService.fire(transition, marking)
+  } catch (e) {
+     console.log(e.message)
+  }
+}
+
+// 模拟流程运行
+function mockRunProcess() {
+  let marking
+
+  // 标记p1为流程的起点, 并添加一个token
+
+  marking = createMarking({
+    place: $ps[0],
+    count: 1
+  })
+
+  // t1 发生变迁
+  fire($ts[0], marking)
+
+  // t2 发生变迁
+  fire($ts[1], marking)
+}
+
+mockRunProcess()
 
 
 

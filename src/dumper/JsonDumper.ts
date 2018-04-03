@@ -5,7 +5,8 @@ import * as jsonfile from 'jsonfile'
 interface ArcSchema {
   id: string
   placeId: string
-  transitionId: string
+  transitionId: string,
+  weight: number
 }
 
 interface NodeSchema {
@@ -26,7 +27,8 @@ export class JsonDumper implements DumperInterface {
     return {
       id: arc.getId(),
       placeId: arc.getPlace().getId(),
-      transitionId: arc.getTransition().getId()
+      transitionId: arc.getTransition().getId(),
+      weight: arc.getWeight()
     }
   }
 
